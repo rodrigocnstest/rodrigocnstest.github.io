@@ -372,25 +372,53 @@ form.addEventListener('submit', e => {
 })
 
 function getLocalData() {
-  let data =
-    'sessionID:' + sessionID + ';' +
-    'fname:' + gsForm.fname.value + ';' +
-    'email:' + gsForm.email.value + ';' +
-    'pxAngstRatio:' + (razaoPxAngst[0]+razaoPxAngst[1])/2 + ';' +
-    '\n' + 
-    "sessionID,taskID,epoch,duration,Qi,Qj,Qk,Qr\n";
+  let sessionData = 
+    sessionID + ';'+
+    task_list[task_n-1] + ';'+
+    time_initial + ';'+
+    gsForm.email.value + ';'+
+    gsForm.fname.value + ';'+
+    gsForm.pxAngstRatio.value + ';'+
+    gsForm.ref_i.value + ';'+
+    gsForm.ref_j.value + ';'+
+    gsForm.ref_k.value + ';'+
+    gsForm.ref_r.value + ';'+
+    gsForm.modelName.value + ';'+
+    gsForm.scrSizeX.value + ';'+
+    gsForm.scrSizeY.value + ';'+
+    gsForm.cvsRefTop.value + ';'+
+    gsForm.cvsRefRight.value + ';'+
+    gsForm.cvsRefBottom.value + ';'+
+    gsForm.cvsRefLeft.value + ';'+
+    gsForm.cvsIntTop.value + ';'+
+    gsForm.cvsIntRight.value + ';'+
+    gsForm.cvsIntBottom.value + ';'+
+    gsForm.cvsIntLeft.value + ';'+
+    gsForm.pxRatio.value + ';';
+
+  let sessionRow = sessionData;
+  let data = 
+    'sessionID;' + 'taskID;' + 'epoch;' + 'duration;' + 'Qi;'+ 'Qj;'+ 'Qk;'+ 'Qr;' + 
+    'sessionID;' + 'taskID;' + 'startEpoch;' + 'email;' + 'subject;' + 'pxAngstRatio;' + 
+    'ref_i;' + 'ref_j;' + 'ref_k;' + 'ref_theta;' + 'modelName;' + 'scrSizeX;' + 'scrSizeY;' +
+    'cvsRefTop;' + 'cvsRefRight;' + 'cvsRefBottom;' + 'cvsRefLeft;' + 
+    'cvsIntTop;' + 'cvsIntRight;' + 'cvsIntBottom;' + 'cvsIntLeft;' + 'pxRatio;' + 
+    '\n' ;
   let newRow = "";
-  for (i = 0; i < parametro1.length; i++) {
+  for (i=0; i< parametro1.length; i++) {
     newRow = 
-      sessionID + ',' +
-      task_list[task_n] + ',' +
-      time_initial+arrayEpoch[i] + ',' +
-      parametroD[i] + ',' +
-      parametro1[i] + ',' +
-      parametro2[i] + ',' +
-      parametro3[i] + ',' +
-      parametro4[i] + '\n';
+      sessionID + ';'+
+      task_list[task_n-1] + ';'+
+      (time_initial + arrayEpoch[i]) + ';'+
+      (i*0.1) + ';'+
+      parametro1[i] + ';'+
+      parametro2[i] + ';'+
+      parametro3[i] + ';'+
+      parametro4[i] + ';'+
+      sessionRow +  
+      '\n';
     data = data + newRow;
+    sessionRow = '';
   }
   return data;
 }
@@ -402,7 +430,7 @@ let saveFile = () => { //Salvar os dados localmente.
   
   // Convert the text to BLOB.
   const textToBLOB = new Blob([data], { type: 'text/plain' });
-  const sFileName = 'IRT_OUTPUT_'+task_list[task_n]+'.csv';	// Local file name.
+  const sFileName = 'IRT_OUTPUT_'+task_list[task_n-1]+'.csv';	// Local file name.
 
   let newLink = document.createElement("a");
   newLink.download = sFileName;

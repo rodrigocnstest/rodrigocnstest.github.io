@@ -1,7 +1,8 @@
 //functions for page data structure and flow.
 
 //Insert here your copied web app URL between the single quotes! 
-const scriptURL = 'https://script.google.com/macros/s/VARIOUS_CHARACTERS_THAT_SEEM_RANDOM/exec';
+//This web app URL is the public one! Change to your own private web app url! 
+const scriptURL = 'https://script.google.com/macros/s/AKfycbxbV6PHlTm2fpzQTLy9_APUj-Ad-N9UmG71N9LYaYYJaY2ns8C04YNbFsAkCGwiKyrI/exec';
 
 //Besides the line above, everything else in this file should be left as it is.
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D

@@ -1,5 +1,9 @@
-iRT files for JoVE publication
+This is the README of the cloned repository containing files used to build the webpage and process the data.
 
-Octave folder is used for the data processing, but not the iRT webpage.
+The link to access the original repository is https://github.com/rodrigocnstest/rodrigocnstest.github.io
+The link to access the original webpage is https://rodrigocnstest.github.io/iRT_JoVE.html
+Change 'rodrigocnstest' to your created username to access your repository after creating it.
 
-By following the paper protocol instructions, you should have a functioning webpage such as the following: https://rodrigocns.github.io/iRT_JoVE.html  
+The Octave folder inside the repository is used for data processing, but not for the webpage.
+
+After following the paper protocol instructions, you should have a functioning webpage.

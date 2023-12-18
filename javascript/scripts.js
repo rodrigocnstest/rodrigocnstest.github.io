@@ -2,7 +2,7 @@
 
 //Insert here your copied web app URL between the single quotes! 
 //This web app URL is the public one! Change to your own private web app url! 
-const scriptURL = 'https://script.google.com/macros/s/AKfycbwa62vhfODz_8W1JPRTA9jqrMxHn1WB6odGNidsea9NK878-IjGcr59N3kqE_JXUSia/exec';
+const scriptURL = 'https://script.google.com/macros/s/AKfycbzZpinE-Z97nGUriLOueD6yXNCCXfbmXbsvtX4NYmm17yoi75UF-1eUMjupsgf-eSqC/exec';
 
 //Besides the line above, everything else in this file should be left as it is.
 //Unless you know what you are doing, or you want to fiddle with coding and learn more! :D

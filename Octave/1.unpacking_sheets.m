@@ -28,34 +28,35 @@ zipped_rows = [8,9,10,11,12,13];
    #=========================================#
 %}
 % functions =================================================
-function uncompressed_data = extract (compressed_data)
-  splitted_data = strsplit (compressed_data, ',');
-  uncompressed_data = str2double (splitted_data)';
+function unpackaged_data = extract (packaged_data)
+  splitted_data = strsplit (packaged_data, ',');
+  unpackaged_data = str2double (splitted_data)';
 endfunction
 
 % Prompt user for filenames ==================
-in_fname = inputdlg ("Insert the name of the packaged data file previously downloaded. Ex: data file.xlsx", "Input data file");
+in_fname = inputdlg ("Insert the name of the packaged data file previously downloaded. Ex: iRT gsheets.xlsx", "Input data file");
 if (isempty ( char (in_fname) ) == 1 )
-  helpdlg ( cstrcat ("Blank input, using default file name: ",input_filename));
+  printf ( cstrcat ("Blank input, using default file name: '",input_filename,"'.\n"));
 else
-  if (endsWith (char (in_fname), ".xlsx" ) == 1 )
+  if (endsWith (char (in_fname), ".xlsx" ) == 0 )
     warndlg ( "File name does not end with .xlsx\nAre you sure it is in the right file format? ", "Input data file");
     endif
   input_filename = char(in_fname);
 endif
 
-out_fname = inputdlg ("Insert the name of the output, unpackaged data file. Ex: output data file.xlsx", "Output data file");
+out_fname = inputdlg ("Insert the name of the output, unpackaged data file. Ex: iRT data.xlsx", "Output data file");
 if (isempty ( char (out_fname) ) == 1 )
-  helpdlg ( cstrcat ("Blank input, using default file name: ",output_filename));
+  printf ( cstrcat ("Blank input, using default file name: '",output_filename,"'.\n"));
 else
-  if (endsWith (char (out_fname), ".xlsx" ) == 1 )
+  if (endsWith (char (out_fname), ".xlsx" ) == 0 )
     warndlg ( "File name does not end with .xlsx\nAre you sure it is in the right file format? ", "Output data file");
     endif
   output_filename = char(out_fname);
 endif
+
 if (strcmp (input_filename, output_filename) == 1 )
   output_filename = strcat( "unpacked ",output_filename);
-  warndlg ( cstrcat ("Input name is the same as output name. Changed output name to ",output_filename, " to avoid overwrites."));
+  warndlg ( cstrcat ("Input name is the same as output name. Changed output name to '",output_filename, "' to avoid overwrites.\n"));
 endif
 
 % Copy sheets data to octave =====================
@@ -104,9 +105,9 @@ endfor
 printf("%i lines processed. DONE! ",counter);toc;
 clear counter;
 
-% Sabing data ====================================
-tic;printf();
-printf(strcat("Saving ", num2str(size(full_matrix,1)), " rows of data (estimated time: ", num2str(size(full_matrix,1)/40), " s)..."));
+% Saving data ====================================
+tic;
+printf ( cstrcat ( "Saving ", num2str(size(full_matrix,1)), " rows of data (estimated time: ", num2str(size(full_matrix,1)/40), " s)..."));
 % write to xlsx file
 xls = xlsopen(strcat(output_filename), 1);
 xls = oct2xls(full_matrix,xls,"data");
@@ -115,5 +116,5 @@ xls = xlsclose(xls);
 
 printf(strcat(output_filename," saved. "));
 
-printf("DONE! ");toc;
-helpdlg ( cstrcat ("Unpackaging of file ",input_filename, " is complete.\n Data was stored inside ", output_filename) );
+printf("DONE! \n");toc;
+helpdlg ( cstrcat ("Unpackaging of file '",input_filename, "' is complete.\nData was stored inside '", output_filename, "'.") );

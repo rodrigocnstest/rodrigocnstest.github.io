@@ -347,8 +347,7 @@ function getTheNumbers() { //armazena os dados de orientação em quat. para os 
   document.getElementById("indicador_orientacao").innerHTML = orientacaoQuat;// debug
   
   arrayEpoch.push(Date.now()-time_initial);
-  parametroD.push(time_elapsed);
-  parametro1.push( Math.round(orientacaoQuat[0]*precision)/precision );
+  parametroD.push(time_elapsed.toFixed(1));
   parametro2.push( Math.round(orientacaoQuat[1]*precision)/precision );
   parametro3.push( Math.round(orientacaoQuat[2]*precision)/precision );
   parametro4.push( Math.round(orientacaoQuat[3]*precision)/precision );
